@@ -1,8 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/address",
-      "destination": "https://docs.google.com/forms/d/e/1FAIpQLScNm984x3DeHwlGAWyvl4T9BGuPFoktVM2bmtDM-Hgn0ZR6og/viewform?usp=header"
+      "destination": "/address.html"
     }
   ]
 }
