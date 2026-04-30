@@ -75,16 +75,39 @@
         .coming-soon {
             font-size: 3.2rem;
             font-weight: 400;
-            color: var(--rustic-brown);
+            <!-- color: var(--rustic-brown); -->
             margin: 2.5rem 0;
-            padding: 1.5rem 3.5rem;
-            border: 5px solid var(--accent-tan);
-            display: inline-block;
-            border-radius: 12px;
-            background-color: rgba(255,255,255,0.9);
+            padding: 3.5rem 3.5rem;
+            <!-- border: 5px solid var(--accent-tan); -->
+            <!-- display: inline-block; -->
+            <!-- border-radius: 12px; -->
+            <!-- background-color: rgba(255,255,255,0.9); -->
             letter-spacing: 8px;
-            box-shadow: 0 10px 30px rgba(92, 70, 52, 0.1);
+            <!-- box-shadow: 0 10px 30px rgba(92, 70, 52, 0.1); -->
         }
+
+        .address-form-btn {
+            display: inline-block;
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            padding: 1.2rem 3rem;
+            background-color: var(--accent-tan);
+            color: var(--soft-white);
+            text-decoration: none;
+            border-radius: 12px;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(138, 111, 79, 0.3);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .address-form-btn:hover {
+            background-color: var(--rustic-brown);
+            box-shadow: 0 15px 40px rgba(92, 70, 52, 0.4);
+            transform: translateY(-4px);
+        }
+
         
         .details {
             max-width: 620px;
@@ -126,7 +149,11 @@
         
         @media (max-width: 640px) {
             h1 { font-size: 3.8rem; }
-            .coming-soon { font-size: 2.4rem; padding: 1rem 2rem; letter-spacing: 4px; }
+            .coming-soon { font-size: 2.4rem; padding: 3rem 2rem; letter-spacing: 4px; }
+            .address-form-btn { 
+              font-size: 1.6rem; 
+              padding: 1rem 2rem; 
+            }
         }
     </style>
 </head>
@@ -142,7 +169,7 @@
         <p class="subtitle">Granbury, TX</p>
         
         <div class="coming-soon">
-            COMING SOON
+          <a href="https://www.myregistry.com/giftlist/bonnieandsam" target="_blank" class="address-form-btn">Gift Registry</a>
         </div>
         
     </div>
