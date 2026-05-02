@@ -1,11 +1,13 @@
 # AGENTS.md
 
-## Setup commands
+## Overview 
 - Using vercel to deployment and hosting
 - Project hosted at https://github.com/shepherdsam/samandbonnie.com
+- Storage is SQLite on Turso
 
-## Code style
+## Code
 - use 2 space for indention
+- TypeScript
 
 ## Website Design
 - Domain: samandbonnie.com
