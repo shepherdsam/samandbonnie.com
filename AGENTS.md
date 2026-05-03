@@ -16,7 +16,7 @@
 - Title: Bonnie & Sam
 
 ## Wedding Details
-Saturday, June 13th, 2026 at Fall Creek Ranch 8220 Langdon Leake Ct, Granbury, Texas 76049
+6pm Saturday, June 13th, 2026 at Fall Creek Ranch 8220 Langdon Leake Ct, Granbury, Texas 76049
 
 <!-- VERCEL BEST PRACTICES START -->
 ## Best practices for developing on Vercel

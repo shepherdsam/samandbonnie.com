@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Bonnie and Sam are getting married June 13, 2026 in Granbury, TX">
     <title>Bonnie &amp; Sam • June 13, 2026</title>
-    <!--<link rel="icon" type="image/svg+xml" href="/logo.svg">-->
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -37,7 +36,7 @@
             box-shadow: 0 2px 10px rgba(92, 70, 52, 0.1);
         }
         
-        .logo {
+        .header {
             font-family: 'Playfair Display', serif;
             font-size: 3.2rem;
             font-weight: 700;
@@ -72,18 +71,11 @@
             letter-spacing: 3px;
         }
         
-        .coming-soon {
+        .link-button {
             font-size: 3.2rem;
             font-weight: 400;
-            <!-- color: var(--rustic-brown); -->
-            margin: 2.5rem 0;
-            padding: 3.5rem 3.5rem;
-            <!-- border: 5px solid var(--accent-tan); -->
-            <!-- display: inline-block; -->
-            <!-- border-radius: 12px; -->
-            <!-- background-color: rgba(255,255,255,0.9); -->
+            margin: 1.5rem 0;
             letter-spacing: 8px;
-            <!-- box-shadow: 0 10px 30px rgba(92, 70, 52, 0.1); -->
         }
 
         .address-form-btn {
@@ -138,7 +130,147 @@
             margin-right: auto;
             opacity: 0.9;
         }
-        
+
+        /* RSVP styles - scoped, rustic aesthetic */
+        #rsvp {
+            max-width: 620px;
+            margin: 3rem auto;
+            padding: 2rem 1.5rem;
+            background-color: var(--soft-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(92, 70, 52, 0.08);
+        }
+
+        .rsvp-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--rustic-brown);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .rsvp-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .rsvp-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            font-size: 1.1rem;
+            font-family: 'Libre Baskerville', serif;
+            border: 2px solid var(--accent-tan);
+            border-radius: 8px;
+            background-color: var(--cream);
+            color: var(--rustic-brown);
+            transition: border-color 0.2s ease;
+        }
+
+        .rsvp-input:focus {
+            outline: none;
+            border-color: var(--rustic-brown);
+        }
+
+        .rsvp-input:disabled {
+            opacity: 0.55;
+            background-color: var(--soft-white);
+            border-color: #d4c9b8;
+            color: #8a7a68;
+            cursor: not-allowed;
+        }
+
+        .rsvp-radio-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+
+        .rsvp-radio-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2.25rem;
+            font-size: 1.15rem;
+            font-family: 'Libre Baskerville', serif;
+            color: var(--rustic-brown);
+            background-color: var(--cream);
+            border: 2px solid var(--accent-tan);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            box-shadow: 0 4px 12px rgba(92, 70, 52, 0.1);
+        }
+
+        .rsvp-radio-btn:hover {
+            background-color: var(--soft-white);
+            border-color: var(--rustic-brown);
+            transform: translateY(-1px);
+        }
+
+        .rsvp-radio-btn input[type="radio"] {
+            display: none;
+        }
+
+        .rsvp-radio-btn:has(input:checked) {
+            background-color: var(--accent-tan);
+            color: var(--soft-white);
+            border-color: var(--rustic-brown);
+            box-shadow: 0 6px 18px rgba(138, 111, 79, 0.35);
+        }
+
+        .rsvp-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            display: none;
+        }
+
+        .rsvp-success {
+            background-color: rgba(139, 168, 118, 0.15);
+            color: #4a5c3a;
+            border: 1px solid #8ba876;
+        }
+
+        .rsvp-error {
+            background-color: rgba(180, 80, 60, 0.1);
+            color: #8c4036;
+            border: 1px solid #b4503c;
+        }
+
+        .rsvp-intro {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        .rsvp-label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--rustic-brown);
+        }
+
+        .rsvp-field {
+            margin-bottom: 0.25rem;
+        }
+
+        .rsvp-honeypot {
+            display: none;
+        }
+
+        .rsvp-submit-btn {
+            margin-top: 0.5rem;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 1rem 2rem;
+        }
+
         footer {
             padding: 2rem 1rem;
             background-color: var(--soft-white);
@@ -149,33 +281,213 @@
         
         @media (max-width: 640px) {
             h1 { font-size: 3.8rem; }
-            .coming-soon { font-size: 2.4rem; padding: 3rem 2rem; letter-spacing: 4px; }
+            .link-button { 
+              font-size: 2.4rem; 
+              letter-spacing: 4px; 
+            }
             .address-form-btn { 
               font-size: 1.6rem; 
               padding: 1rem 2rem; 
             }
+            #rsvp { padding: 1.5rem 1rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-      <div class="logo">
-        <h1>Bonnie &amp; Sam</h1>
-      </div>
-    </header>
-    <div class="hero">
-        <p class="subtitle">June 13, 2026</p>
-        <div class="rustic-line"></div>
-        <p class="subtitle">Granbury, TX</p>
-        
-        <div class="coming-soon">
-          <a href="https://www.myregistry.com/giftlist/bonnieandsam" target="_blank" class="address-form-btn">Gift Registry</a>
-        </div>
-        
+  <header>
+    <div class="header">
+      <h1>Bonnie &amp; Sam</h1>
     </div>
-    
-    <footer>
-        <p style="font-size: 0.85rem;">Built with love by Sam</p>
-    </footer>
+  </header>
+  <div class="hero">
+    <p class="subtitle">Saturday, June 13, 2026</p>
+    <p class="subtitle">6:00 PM</p>
+    <div class="rustic-line"></div>
+    <p class="subtitle">Fall Creek Ranch</p>
+    <p class="subtitle">Granbury, TX</p>
+
+    <!-- 
+      TODO: Move RSVP to it's own page
+    <div class="link-button"> 
+      <a href="https://www.myregistry.com/giftlist/bonnieandsam" target="_blank" class="address-form-btn">RSVP</a>
+    </div>
+    <div class="link-button">
+      <a href="https://www.myregistry.com/giftlist/bonnieandsam" target="_blank" class="address-form-btn">Details</a>
+    </div>
+    -->
+    <div class="link-button">
+      <a href="https://www.myregistry.com/giftlist/bonnieandsam" target="_blank" class="address-form-btn">Gift Registry</a>
+    </div>
+
+    <section id="rsvp">
+      <div class="rsvp-section">
+        <h2>RSVP</h2>
+        <p class="rsvp-intro">We can't wait to celebrate with you! Please let us know if you can join us.</p>
+
+        <form id="rsvp-form">
+          <div class="rsvp-wrapper">
+            <div class="rsvp-field">
+              <label for="name" class="rsvp-label">Name</label>
+              <input type="text" id="name" name="name" class="rsvp-input" placeholder="Your name" required>
+            </div>
+
+            <div class="rsvp-field">
+              <label class="rsvp-label">Will you be attending?</label>
+              <div class="rsvp-radio-group">
+                <label class="rsvp-radio-btn">
+                  <input type="radio" name="attending" value="true" required>
+                  <span>Yes</span>
+                </label>
+                <label class="rsvp-radio-btn">
+                  <input type="radio" name="attending" value="false" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="rsvp-field">
+              <label for="guest_count" class="rsvp-label">Number of Guests</label>
+              <input type="number" id="guest_count" name="guest_count" class="rsvp-input" min="1" value="1" required>
+            </div>
+
+            <div class="rsvp-field">
+              <label for="message" class="rsvp-label">Message</label>
+              <textarea id="message" name="message" class="rsvp-input" rows="3" placeholder="(optional)"></textarea>
+            </div>
+
+            <!-- Honeypot -->
+            <input type="text" name="website" class="rsvp-honeypot" tabindex="-1" autocomplete="off">
+
+            <button type="submit" class="address-form-btn rsvp-submit-btn">Send RSVP</button>
+          </div>
+        </form>
+
+        <div id="rsvp-success" class="rsvp-message rsvp-success"></div>
+        <div id="rsvp-error" class="rsvp-message rsvp-error"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p style="font-size: 0.85rem;">Built with love by Sam and Grok</p>
+  </footer>
+
+  <script>
+    const rsvpForm = document.getElementById('rsvp-form');
+    const successMsg = document.getElementById('rsvp-success');
+    const errorMsg = document.getElementById('rsvp-error');
+
+    function showMessage(element, text, isSuccess) {
+      if (isSuccess) {
+        successMsg.textContent = text;
+        successMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+      } else {
+        errorMsg.textContent = text;
+        errorMsg.style.display = 'block';
+        successMsg.style.display = 'none';
+      }
+    }
+
+    function hideMessages() {
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+    }
+
+    function updateGuestSection() {
+      const guestInput = document.getElementById('guest_count');
+      const guestField = guestInput ? guestInput.closest('.rsvp-field') : null;
+      if (!guestInput || !guestField) return;
+
+      const yesRadio = document.querySelector('input[name="attending"][value="true"]');
+      const noRadio = document.querySelector('input[name="attending"][value="false"]');
+      const isYes = yesRadio && yesRadio.checked;
+      const isNo = noRadio && noRadio.checked;
+
+      if (isYes) {
+        guestInput.disabled = false;
+        guestInput.required = true;
+        guestInput.min = '1';
+        const val = parseInt(guestInput.value, 10);
+        if (isNaN(val) || val < 1) guestInput.value = '1';
+        guestField.style.opacity = '1';
+      } else if (isNo) {
+        guestInput.disabled = true;
+        guestInput.required = false;
+        guestInput.value = '0';
+        guestField.style.opacity = '0.6';
+      } else {
+        // no selection (e.g. after reset)
+        guestInput.disabled = false;
+        guestInput.required = true;
+        guestInput.min = '1';
+        if (!guestInput.value || parseInt(guestInput.value, 10) < 1) guestInput.value = '1';
+        guestField.style.opacity = '1';
+      }
+    }
+
+    // Attach listeners for attending radios
+    document.querySelectorAll('input[name="attending"]').forEach(radio => {
+      radio.addEventListener('change', updateGuestSection);
+    });
+
+    // Re-enable on form reset
+    rsvpForm.addEventListener('reset', () => setTimeout(updateGuestSection, 0));
+
+    // Initial state
+    updateGuestSection();
+
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideMessages();
+
+      const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const formData = new FormData(rsvpForm);
+      const attending = formData.get('attending') === 'true';
+      const guestInput = document.getElementById('guest_count');
+      let guest_count = attending ? parseInt(guestInput.value || '1', 10) : 0;
+      if (attending && (isNaN(guest_count) || guest_count < 1)) guest_count = 1;
+      const data = {
+        name: formData.get('name'),
+        attending,
+        guest_count,
+        message: formData.get('message') || '',
+        website: formData.get('website') || ''
+      };
+
+      try {
+        const response = await fetch('/api/rsvp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showMessage(successMsg, result.message || 'RSVP received. Thank you!', true);
+          rsvpForm.reset();
+        } else {
+          let errorText = result.message || 'Something went wrong. Please try again.';
+          if (result.errors) {
+            errorText = Object.values(result.errors).join(' ');
+          }
+          showMessage(errorMsg, errorText, false);
+        }
+      } catch (err) {
+        showMessage(errorMsg, 'Network error. Please try again later.', false);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  </script>
 </body>
 </html>
