@@ -1,5 +1,8 @@
 # AGENTS.md
 
+## Important
+- Ignore `./archive/` folder! Don't read this.
+
 ## Overview 
 - Using vercel to deployment and hosting
 - Project hosted at https://github.com/shepherdsam/samandbonnie.com

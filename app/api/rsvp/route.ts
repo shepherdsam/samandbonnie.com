@@ -1,4 +1,5 @@
 import { createClient } from "@libsql/client";
+import { NextRequest, NextResponse } from "next/server";
 
 interface RSVPRequest {
   name: string;
@@ -14,28 +15,19 @@ interface RSVPResponse {
   errors?: Record<string, string>;
 }
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
-  // Only allow POST
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
-    return res.status(405).json({ 
-      success: false, 
-      message: "Method not allowed" 
-    } as RSVPResponse);
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    const body: RSVPRequest = req.body;
+    const body: RSVPRequest = await req.json();
 
     // Honeypot check - if filled, it's a bot
     if (body.website && body.website.trim() !== "") {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid submission"
-      } as RSVPResponse);
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid submission",
+        } as RSVPResponse,
+        { status: 400 }
+      );
     }
 
     // Validation
@@ -57,11 +49,14 @@ export default async function handler(
     }
 
     if (Object.keys(errors).length > 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Validation failed",
-        errors
-      } as RSVPResponse);
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Validation failed",
+          errors,
+        } as RSVPResponse,
+        { status: 400 }
+      );
     }
 
     // Connect to Turso
@@ -84,16 +79,21 @@ export default async function handler(
       ],
     });
 
-    return res.status(200).json({
-      success: true,
-      message: "RSVP received. Thank you!"
-    } as RSVPResponse);
-
+    return NextResponse.json(
+      {
+        success: true,
+        message: "RSVP received. Thank you!",
+      } as RSVPResponse,
+      { status: 200 }
+    );
   } catch (error: any) {
     console.error("RSVP error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error. Please try again later."
-    } as RSVPResponse);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Internal server error. Please try again later.",
+      } as RSVPResponse,
+      { status: 500 }
+    );
   }
 }
