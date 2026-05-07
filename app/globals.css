@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --cream: #f8f4eb;
     --soft-white: #fffaf0;
@@ -351,4 +355,94 @@ footer {
     #rsvp { padding: 1.5rem 1rem; }
     .main-nav ul { gap: 1.25rem; flex-wrap: wrap; }
     .main-nav a { font-size: 1rem; padding: 0.4rem 0.5rem; }
+}
+
+/* Admin dashboard styles */
+.admin-page {
+  background-color: var(--cream);
+  color: var(--rustic-brown);
+  min-height: 70vh;
+  padding: 2rem;
+}
+
+.admin-card {
+  background-color: var(--soft-white);
+  border: 1px solid #d4c9b8;
+  border-radius: 8px;
+  margin: 0.5rem;
+}
+
+.admin-input {
+  border: 1px solid #d4c9b8;
+  background-color: var(--soft-white);
+  color: var(--rustic-brown);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+.admin-input:focus {
+  border-color: var(--accent-tan);
+  outline: none;
+}
+
+.admin-btn {
+  padding: 0.75rem 1rem;
+  background-color: var(--rustic-brown);
+  color: var(--soft-white);
+  font-size: 0.875rem;
+  letter-spacing: 1.5px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  margin: 0 1rem;
+}
+
+.admin-btn:hover {
+  background-color: #3f372d;
+}
+
+.admin-stat-label {
+  font-size: 0.75rem;
+  color: #5c5144;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.admin-link {
+  font-size: 0.875rem;
+  color: #8c7b5c;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.admin-link:hover {
+  color: #5c5144;
+}
+
+.admin-heading {
+  font-size: 1.25rem;
+  color: #5c5144;
+}
+
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  color: #5c5144;
+  letter-spacing: 1.5px;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #d4c9b8;
+  font-weight: 500;
+}
+
+.admin-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e8e0d3;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
 }
