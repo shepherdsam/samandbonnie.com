@@ -1,6 +1,8 @@
 import { getDbClient, type RsvpRow } from '@/lib/db';
 import DashboardClient from './DashboardClient';
 
+export const dynamic = 'force-dynamic';
+
 async function getDashboardData() {
   const client = getDbClient()
 
