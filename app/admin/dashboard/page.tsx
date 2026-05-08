@@ -10,7 +10,7 @@ async function getDashboardData() {
       args: [],
     }),
     client.execute({
-      sql: 'SELECT SUM(guest_count) as total FROM rsvps WHERE attending = 0',
+      sql: 'SELECT COUNT(id) as total FROM rsvps WHERE attending = 0',
       args: [],
     }),
     client.execute({
