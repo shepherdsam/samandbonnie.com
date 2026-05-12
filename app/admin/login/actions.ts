@@ -12,7 +12,7 @@ export async function login(formData: FormData) {
     cookieStore.set('admin_session', 'authenticated', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 60 * 60 * 24, // 24h
+      maxAge: 60 * 60 * 24 * 7, // 7d
       path: '/',
     })
     redirect('/admin/dashboard')
