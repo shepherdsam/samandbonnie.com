@@ -86,7 +86,7 @@ export default function DashboardClient({ attending, declined, rsvps }: Props) {
                 <td>{r.guest_count}</td>
                 <td className="text-sm" style={{color: '#5c5144'}}>{r.message || '—'}</td>
                 <td className="text-sm" style={{color: '#8c7b5c'}}>
-                  {new Date(r.created_at).toLocaleDateString()}
+                  {new Date(`${r.created_at} UTC`).toLocaleDateString()}
                 </td>
               </tr>
             ))
