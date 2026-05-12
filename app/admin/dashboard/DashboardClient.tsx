@@ -85,7 +85,7 @@ export default function DashboardClient({ attending, declined, rsvps }: Props) {
                 <td>{r.attending ? 'Yes' : 'No'}</td>
                 <td>{r.guest_count}</td>
                 <td className="text-sm" style={{color: '#5c5144'}}>{r.message || '—'}</td>
-                <td className="text-sm" style={{color: '#8c7b5c'}}>
+                <td className="text-sm" style={{color: '#8c7b5c'}} title={new Date(`${r.created_at} UTC`).toLocaleTimeString()}>
                   {new Date(`${r.created_at} UTC`).toLocaleDateString()}
                 </td>
               </tr>
