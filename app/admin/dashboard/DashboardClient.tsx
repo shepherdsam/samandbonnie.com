@@ -9,6 +9,8 @@ interface Props {
   rsvps: RsvpRow[]
 }
 
+const parseUTCDate = (dateStr: string) => new Date(dateStr.replace(' ', 'T') + 'Z');
+
 export default function DashboardClient({ attending, declined, rsvps }: Props) {
   const [nameFilter, setNameFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'attending' | 'declined'>('all');
@@ -85,8 +87,8 @@ export default function DashboardClient({ attending, declined, rsvps }: Props) {
                 <td>{r.attending ? 'Yes' : 'No'}</td>
                 <td>{r.guest_count}</td>
                 <td className="text-sm" style={{color: '#5c5144'}}>{r.message || '—'}</td>
-                <td className="text-sm" style={{color: '#8c7b5c'}} title={new Date(`${r.created_at} UTC`).toLocaleTimeString()}>
-                  {new Date(`${r.created_at} UTC`).toLocaleDateString()}
+                <td className="text-sm" style={{color: '#8c7b5c'}} title={parseUTCDate(r.created_at).toLocaleTimeString()}>
+                  {parseUTCDate(r.created_at).toLocaleDateString()}
                 </td>
               </tr>
             ))
