@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import type { RsvpRow } from '@/lib/db'
 
 interface Props {
@@ -14,6 +14,7 @@ const parseUTCDate = (dateStr: string) => new Date(dateStr.replace(' ', 'T') + '
 export default function DashboardClient({ attending, declined, rsvps }: Props) {
   const [nameFilter, setNameFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'attending' | 'declined'>('all');
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const filtered = rsvps.filter((r) => {
     const matchesName = r.name.toLowerCase().includes(nameFilter.toLowerCase());
@@ -71,7 +72,7 @@ export default function DashboardClient({ attending, declined, rsvps }: Props) {
             <th>NAME</th>
             <th>ATTENDING</th>
             <th>GUESTS</th>
-            <th>MESSAGE</th>
+            <th className="hidden md:table-cell">MESSAGE</th>
             <th>SUBMITTED</th>
           </tr>
         </thead>
@@ -81,16 +82,28 @@ export default function DashboardClient({ attending, declined, rsvps }: Props) {
               <td colSpan={5} className="py-8 text-center" style={{color: '#8c7b5c'}}>No matching RSVPs.</td>
             </tr>
           ) : (
-            filtered.map((r) => (
-              <tr key={r.id}>
-                <td className="font-medium">{r.name}</td>
-                <td>{r.attending ? 'Yes' : 'No'}</td>
-                <td>{r.guest_count}</td>
-                <td className="text-sm" style={{color: '#5c5144'}}>{r.message || '—'}</td>
-                <td className="text-sm" style={{color: '#8c7b5c'}} title={parseUTCDate(r.created_at).toLocaleTimeString()}>
-                  {parseUTCDate(r.created_at).toLocaleDateString()}
-                </td>
-              </tr>
+            filtered.flatMap((r) => (
+              <Fragment key={r.id}>
+                <tr 
+                  className="cursor-pointer md:cursor-default" 
+                  onClick={() => setExpandedId(expandedId === r.id ? null : r.id)}
+                >
+                  <td className="font-medium">{r.name}</td>
+                  <td>{r.attending ? 'Yes' : 'No'}</td>
+                  <td>{r.guest_count}</td>
+                  <td className="hidden md:table-cell text-sm" style={{color: '#5c5144'}}>{r.message || '—'}</td>
+                  <td className="text-sm" style={{color: '#8c7b5c'}} title={parseUTCDate(r.created_at).toLocaleTimeString()}>
+                    {parseUTCDate(r.created_at).toLocaleDateString()}
+                  </td>
+                </tr>
+                {expandedId === r.id && (
+                  <tr className="md:hidden">
+                    <td colSpan={5} className="p-4 text-sm" style={{color: '#5c5144'}}>
+                      <strong>Message:</strong> {r.message || '—'}
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
             ))
           )}
         </tbody>
