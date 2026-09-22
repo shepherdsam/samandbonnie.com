@@ -8,6 +8,7 @@ export default function Menu() {
 
   const links = [
     { href: '/', label: 'Home' },
+    { href: '/photos', label: 'Photos' },
     { href: '/rsvp', label: 'RSVP' },
     { href: '/details', label: 'Details' },
     { href: '/registry', label: 'Registry' },
@@ -20,7 +21,11 @@ export default function Menu() {
           <li key={link.href}>
             <Link 
               href={link.href} 
-              className={pathname === link.href ? 'active' : ''}
+              className={
+                pathname === link.href || (link.href !== '/' && pathname.startsWith(`${link.href}/`))
+                  ? 'active'
+                  : ''
+              }
             >
               {link.label}
             </Link>

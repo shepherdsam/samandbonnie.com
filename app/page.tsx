@@ -12,6 +12,7 @@ export default function Home() {
       <p className="page-header">Granbury, TX</p>
 
       <div className="home-menu">
+        <Link href="/photos" className="address-form-btn link-button">Photos</Link>
         <Link href="/rsvp" className="address-form-btn link-button">RSVP</Link>
         <Link href="/details" className="address-form-btn link-button">Details</Link>
         <Link href="/registry" className="address-form-btn link-button">Registry</Link>

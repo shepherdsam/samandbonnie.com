@@ -382,6 +382,9 @@ footer {
 }
 
 @media (max-width: 640px) {
+    .lightbox {
+      padding: 4rem 2.75rem;
+    }
     h1 { font-size: 3.8rem; }
     .link-button { 
       font-size: 2.4rem; 
@@ -460,6 +463,213 @@ footer {
 .admin-heading {
   font-size: 1.25rem;
   color: #5c5144;
+}
+
+/* Photo albums */
+.photos-back {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.photos-back a {
+  color: var(--accent-tan);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.photos-back a:hover {
+  color: var(--rustic-brown);
+}
+
+.photos-login-form {
+  max-width: 420px;
+  margin: 1.5rem auto 2.5rem;
+  text-align: left;
+}
+
+.photos-login-btn {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.photos-login-error {
+  margin-top: 1rem;
+  color: #8c4036;
+}
+
+.album-index {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 920px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1.25rem;
+}
+
+.album-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--rustic-brown);
+}
+
+.album-card-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: var(--soft-white);
+  box-shadow: 0 4px 20px rgba(92, 70, 52, 0.16);
+}
+
+.album-card-thumb img,
+.album-card-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.album-card-placeholder {
+  background: linear-gradient(135deg, var(--soft-white), #e8dfd0);
+}
+
+.album-card-title {
+  font-family: 'Playfair Display', var(--font-playfair), serif;
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+  letter-spacing: 1px;
+  color: var(--rustic-brown);
+}
+
+.photo-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 1080px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1.25rem;
+}
+
+.photo-cell {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  background: var(--soft-white);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(92, 70, 52, 0.16);
+}
+
+.photo-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 4rem;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  box-shadow: 0 16px 40px rgba(92, 70, 52, 0.32);
+}
+
+.lightbox-preload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lightbox-waiting {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(248, 244, 235, 0.58);
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  color: var(--rustic-brown);
+  cursor: pointer;
+  line-height: 1;
+  font-family: 'Playfair Display', var(--font-playfair), serif;
+}
+
+.lightbox-close {
+  top: 0.75rem;
+  right: 1.25rem;
+  font-size: 2.75rem;
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.5rem;
+  padding: 0.5rem;
+  filter: drop-shadow(0 8px 12px rgba(92, 70, 52, 0.35));
+}
+
+.lightbox-prev { left: 0.5rem; }
+.lightbox-next { right: 0.5rem; }
+
+@media (min-width: 640px) {
+  .album-index {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .album-index {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .photo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .lightbox-nav {
+    font-size: 5.5rem;
+    font-weight: 700;
+    padding: 0.75rem;
+  }
 }
 
 
