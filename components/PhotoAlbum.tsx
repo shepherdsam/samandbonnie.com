@@ -95,7 +95,6 @@ export default function PhotoAlbum({ slug, title, photos, initialParam }: PhotoA
   const openPhoto = index !== null ? photos[index] : null;
   const targetFile = openPhoto?.file ?? null;
   const waiting = Boolean(targetFile && readyFile !== targetFile && slow);
-  const displayFile = readyFile ?? targetFile;
   const preloadFiles = index === null
     ? []
     : neighborIndexes(index, count).map((i) => photos[i].file);
@@ -163,7 +162,7 @@ export default function PhotoAlbum({ slug, title, photos, initialParam }: PhotoA
           ) : null}
           <img
             className="lightbox-image"
-            src={photoSrc(slug, displayFile, 'full')}
+            src={photoSrc(slug, readyFile ?? targetFile, 'full')}
             alt={`${title} photo ${index + 1}`}
             draggable={false}
             onContextMenu={(event) => event.preventDefault()}
