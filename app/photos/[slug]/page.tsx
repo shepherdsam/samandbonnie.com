@@ -3,6 +3,28 @@ import { notFound } from 'next/navigation';
 import PhotoAlbum from '@/components/PhotoAlbum';
 import { albums, getAlbum } from '@/lib/albums';
 
+function AlbumBackLink({ atEnd = false }: { atEnd?: boolean }) {
+  return (
+    <p className={atEnd ? 'photos-back photos-back-end' : 'photos-back'}>
+      <Link href="/photos">
+        <span className="photos-back-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path
+              d="M19 12H6M11 6.5 5.5 12 11 17.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+        All albums
+      </Link>
+    </p>
+  );
+}
+
 export function generateStaticParams() {
   return albums.map((album) => ({ slug: album.slug }));
 }
@@ -22,9 +44,7 @@ export default async function AlbumPage({
   return (
     <div>
       <div className="details">
-        <p className="photos-back">
-          <Link href="/photos">All albums</Link>
-        </p>
+        <AlbumBackLink />
         <h2 className="subtitle">{album.title}</h2>
         <div className="rustic-line"></div>
       </div>
@@ -39,6 +59,8 @@ export default async function AlbumPage({
           initialParam={p}
         />
       )}
+
+      <AlbumBackLink atEnd />
     </div>
   );
 }
