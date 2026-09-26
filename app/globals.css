@@ -18,7 +18,11 @@ body {
     color: var(--rustic-brown);
     line-height: 1.6;
     text-align: center;
+    /* clip, not hidden: overflow-x: hidden on body makes iOS Safari treat
+       position: fixed as relative to the document, so the lightbox opens
+       at the top of the page after you scroll. */
     overflow-x: hidden;
+    overflow-x: clip;
 }
 
 header {
@@ -634,6 +638,8 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 3.5rem 4rem;
+  overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
 .lightbox-image {

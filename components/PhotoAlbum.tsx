@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import ProtectedImage from '@/components/ProtectedImage';
 import { photoSrc, type Photo } from '@/lib/albums';
@@ -34,6 +34,7 @@ export default function PhotoAlbum({ slug, title, photos, initialParam }: PhotoA
   const [slow, setSlow] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
 
   const setOpen = useCallback((next: number | null) => {
     setIndex(next);
@@ -69,9 +70,74 @@ export default function PhotoAlbum({ slug, title, photos, initialParam }: PhotoA
     return () => window.removeEventListener('popstate', onPop);
   }, [count]);
 
+  const lightboxOpen = index !== null;
+
+  useLayoutEffect(() => {
+    if (!lightboxOpen) return;
+
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const { body, documentElement } = document;
+    const previous = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      paddingRight: body.style.paddingRight,
+      overflowX: body.style.overflowX,
+      overflowY: body.style.overflowY,
+    };
+    const scrollbar = window.innerWidth - documentElement.clientWidth;
+
+    // iOS Safari anchors position:fixed to the top of the document when body
+    // overflow is hidden or clip, so a photo opened mid-album sits off screen.
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+    body.style.overflowX = 'visible';
+    body.style.overflowY = 'visible';
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+
+    return () => {
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.left = previous.left;
+      body.style.right = previous.right;
+      body.style.width = previous.width;
+      body.style.paddingRight = previous.paddingRight;
+      body.style.overflowX = previous.overflowX;
+      body.style.overflowY = previous.overflowY;
+      window.scrollTo(scrollX, scrollY);
+    };
+  }, [lightboxOpen]);
+
+  useLayoutEffect(() => {
+    if (!lightboxOpen) return;
+    const node = lightboxRef.current;
+    const viewport = window.visualViewport;
+    if (!node || !viewport) return;
+
+    const pin = () => {
+      node.style.top = `${viewport.offsetTop}px`;
+      node.style.height = `${viewport.height}px`;
+    };
+    pin();
+    viewport.addEventListener('resize', pin);
+    viewport.addEventListener('scroll', pin);
+    return () => {
+      viewport.removeEventListener('resize', pin);
+      viewport.removeEventListener('scroll', pin);
+      node.style.top = '';
+      node.style.height = '';
+    };
+  }, [lightboxOpen]);
+
   useEffect(() => {
     if (index === null) return;
-    closeRef.current?.focus();
+    closeRef.current?.focus({ preventScroll: true });
 
     function onKey(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -84,11 +150,8 @@ export default function PhotoAlbum({ slug, title, photos, initialParam }: PhotoA
     }
 
     window.addEventListener('keydown', onKey);
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = previous;
     };
   }, [index, setOpen, step]);
 
@@ -131,6 +194,7 @@ export default function PhotoAlbum({ slug, title, photos, initialParam }: PhotoA
 
       {openPhoto && index !== null && targetFile ? (
         <div
+          ref={lightboxRef}
           className="lightbox"
           role="dialog"
           aria-modal="true"
